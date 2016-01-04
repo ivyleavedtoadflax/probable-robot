@@ -1,9 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="d3.v2.min.js"></script>
+    <script type="text/javascript" src="d3.min.js"></script>
   </head>
   <body>
     <p>Hello!</p>
+
+<script>
+
+var xhr = new XMLHttpRequest();
+var url = "http://dfe-api.azurewebsites.net/api/keystage/search/ks4?$filter=LA%20eq%20%27201%27";
+console.log(url)
+
+xhr.open("GET", url, false);
+xhr.send();
+
+xhrjson = JSON.parse(xhr.response);
+xhrjson = JSON.stringify(xhrjson,null,2);
+console.log(xhrjson)
+
+</script>
+
   </body>
 </html>
