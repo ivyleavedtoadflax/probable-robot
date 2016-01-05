@@ -4,22 +4,36 @@
     <script type="text/javascript" src="d3.min.js"></script>
   </head>
   <body>
-    <p>Hello!</p>
+    <div id="demo"><h2>Let AJAX change this text</h2></div>
+
+<button type="button" onclick="loadDoc()">Query API</button>
 
 <script>
 
-var xhr = new XMLHttpRequest();
 var url = "http://dfe-api.azurewebsites.net/api/keystage/search/ks4?$filter=LA%20eq%20%27201%27";
 console.log(url)
 
-xhr.open("GET", url, false);
-xhr.send();
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+	      document.getElementById("demo").innerHTML = JSON.parse(xhttp.responseText).NumberOfResults + " returned";
+	          }
+		    };
+		      xhttp.open("GET", url, true);
+		        xhttp.send();
+		
+//xhttpjson = JSON.parse(xhttp.response);
+//JSON.stringify(xhttpjson, null, 2);
+//console.log(xhttpjson)
 
-xhrjson = JSON.parse(xhr.response);
-xhrjson = JSON.stringify(xhrjson,null,2);
-console.log(xhrjson)
+//obj = JSON.parse(xhttp.response);
+//document.getElementById("demo").innerHTML =
+//obj.NumberOfResults + " returned";
+}
 
 </script>
+
 
   </body>
 </html>
